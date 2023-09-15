@@ -1,10 +1,8 @@
 'use client';
 
-import fetch from 'node-fetch';
 import React, { useEffect, useState } from 'react';
-import uuid from 'react-uuid';
 
-import { Input } from '@/components';
+import { Input, ValidationOutput } from '@/components';
 import { fetchPassword } from '@/services';
 import { RenderRuleMessage, ValidateResponse } from '@/types';
 
@@ -38,20 +36,7 @@ export default function Home() {
 							/>
 						</div>
 						<div className="basis-1/2 flex flex-col gap-4">
-							{validateRules.map(rule => (
-								<div className="flex gap-4 items-center" key={uuid()} data-testid={rule.value ? `success_${rule.id}` : `failure_${rule.id}`}>
-									<div
-										className={`flex justify-center items-center w-5 h-5 ${
-											rule.value ? 'bg-green-500' : 'bg-red-500'
-										} rounded-md inline-block`}
-									>
-										{rule.value ? '✓' : '✗'} {/* Checkmark or cross */}
-									</div>
-									<div className="text-sm">
-										{rule.message} {/* Validation message */}
-									</div>
-								</div>
-							))}
+							{validateRules.map(rule => <ValidationOutput key={rule.id} {...rule} />)}
 						</div>
 					</div>
 					<button

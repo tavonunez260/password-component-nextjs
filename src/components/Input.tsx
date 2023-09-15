@@ -19,7 +19,7 @@ export const Input: React.FC<InputProps> = ({
 		if (rules && setValidateRules) {
 			setValidateRules(validatePasswordRules(rules, value));
 		}
-	}, [value]);
+	}, [value, rules, setValidateRules]);
 
 	const innerOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
